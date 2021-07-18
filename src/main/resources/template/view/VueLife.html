@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <!--    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">-->
+    <link rel="stylesheet" href="../../template/static/resource/elementui@2.13.2_index.css">
+</head>
+<body>
+<div id="app">
+    <p>{{ message }}</p>
+</div>
+</body>
+<!-- 像js这种比较大的文件，直接放在body后面加载，
+这样如果访问人比较多(网速卡的时候)，会出现页面，可能没有效果 -->
+<!-- import Vue before Element -->
+<!--<script src="https://unpkg.com/vue/dist/vue.js"></script>-->
+<script src="../../template/static/resource/vue@2.6.12.js"></script>
+<!-- import JavaScript -->
+<!--<script src="https://unpkg.com/element-ui/lib/index.js"></script>-->
+<script src="../../template/static/resource/elementui@2.13.2index.js"></script>
+<script src="../../template/static/js/jquery-1.8.0.js"></script>
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+        message : "Druid is cool"
+    },
+    beforeCreate() {
+        console.group('beforeCreate创建前的状态=============');
+        console.log("%c%s","color:red","el    : "+this.$el);
+        console.log("%c%s","color:red","data    : "+this.$data);
+        console.log("%c%s","color:red","message    : "+this.message);
+    },
+    created() {
+        console.group('Created创建前的状态=============');
+        console.log("%c%s","color:red","el    : "+this.$el);
+        console.log("%c%s","color:red","data    : "+this.$data);
+        console.log("%c%s","color:red","message    : "+this.message);
+    },
+    beforeMount() {
+        console.group('BeforeMount创建前的状态=============');
+        console.log("%c%s","color:red","el    : "+this.$el);
+        console.log(this.$el);
+        console.log("%c%s","color:red","data    : "+this.$data);
+        console.log("%c%s","color:red","message    : "+this.message);
+    },
+    mounted() {
+        console.group('Mounted创建前的状态=============');
+        console.log("%c%s","color:red","el    : "+this.$el);
+        console.log(this.$el);
+        console.log("%c%s","color:red","data    : "+this.$data);
+        console.log("%c%s","color:red","message    : "+this.message);
+    },
+    beforeUpdate() {
+        console.group('beforeUpdate创建前的状态=============');
+        console.log("%c%s","color:red","el    : "+this.$el);
+        console.log(this.$el);
+        console.log("%c%s","color:red","data    : "+this.$data);
+        console.log("%c%s","color:red","message    : "+this.message);
+    },
+    updated() {
+        console.group('updated创建前的状态=============');
+        console.log("%c%s","color:red","el    : "+this.$el);
+        console.log(this.$el);
+        console.log("%c%s","color:red","data    : "+this.$data);
+        console.log("%c%s","color:red","message    : "+this.message);
+    },
+    beforeDestroy() {
+        console.group('beforeDestory创建前的状态=============');
+        console.log("%c%s","color:red","el    : "+this.$el);
+        console.log(this.$el);
+        console.log("%c%s","color:red","data    : "+this.$data);
+        console.log("%c%s","color:red","message    : "+this.message);
+    },
+    destroyed() {
+        console.group('destory创建前的状态=============');
+        console.log("%c%s","color:red","el    : "+this.$el);
+        console.log(this.$el);
+        console.log("%c%s","color:red","data    : "+this.$data);
+        console.log("%c%s","color:red","message    : "+this.message);
+    }
+  })
+</script>
+<!--<script>
+  new Vue({
+    el: '#app',
+    data: {
+        tableData: [{
+          id: 1,
+          name: '王小虎',
+          sex: '上海',
+          age: 22,
+          address: '上海市普陀区金沙江路 1518 弄',
+          tel: '200333'
+        }]
+    },
+    methods: {
+    created() {
+        console.log("执行钩子函数");
+        const url = "/user/getAll";
+        $.post(url,{username:'Druid',password:'123456'}).then(response => {
+            this.tableData = response.data;
+            console.log(response);
+            console.log(tableData);
+        })
+      },
+      handleClick(row) {
+        console.log(row);
+      }
+    }
+  })
+
+    <script>
+  export default {
+    data() {
+      return {
+        form: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
+        }
+      }
+    },
+    methods: {
+      onSubmit() {
+        console.log('submit!');
+      }
+    }
+  }
+</script>
+
+</script>-->
+</html>
