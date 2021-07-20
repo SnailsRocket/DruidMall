@@ -81,15 +81,8 @@ public class GetExcelDateServiceImpl implements GetExcelDateService {
 //            EasyExcel.write(fileName).head(fillHead(downloadDateEnums)).sheet("测试sheet").doWrite(null);
             List<DownloadData> dataList = fillDataToExcel();
             List<String> headNameList = getHeadNameList();
-            Field monthlyCost = DownloadData.class.getDeclaredField("monthlyCost");
-            monthlyCost.setAccessible(true);
-            ExcelProperty annotation = monthlyCost.getAnnotation(ExcelProperty.class);
-            InvocationHandler invocationHandler = Proxy.getInvocationHandler(annotation);
-            Field field = invocationHandler.getClass().getDeclaredField("memberValues");
-            field.setAccessible(true);
-            Map excelValue = (Map)field.get(invocationHandler);
-            Object excelOS = excelValue.get("value");
-            excelValue.put("value",new String[]{"更改excel导出头"});
+            // 通过反射，在运行时修改ExcelProperty 注解中的内容
+            setHeadSelf();
 
             EasyExcel.write(response.getOutputStream(),DownloadData.class)
 //                    .registerWriteHandler(new RowWriteHandler())
@@ -99,6 +92,23 @@ public class GetExcelDateServiceImpl implements GetExcelDateService {
             e.printStackTrace();
             System.out.println("导出文件异常");
         }
+    }
+
+    /**
+     *  通过反射，在运行时修改注解中的内容
+     * @throws NoSuchFieldException
+     * @throws IllegalAccessException
+     */
+    public void setHeadSelf() throws NoSuchFieldException, IllegalAccessException {
+        Field monthlyCost = DownloadData.class.getDeclaredField("monthlyCost");
+        monthlyCost.setAccessible(true);
+        ExcelProperty annotation = monthlyCost.getAnnotation(ExcelProperty.class);
+        InvocationHandler invocationHandler = Proxy.getInvocationHandler(annotation);
+        Field field = invocationHandler.getClass().getDeclaredField("memberValues");
+        field.setAccessible(true);
+        Map excelValue = (Map)field.get(invocationHandler);
+        Object excelOS = excelValue.get("value");
+        excelValue.put("value",new String[]{"更改excel导出头"});
     }
 
     @Override
