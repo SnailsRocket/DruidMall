@@ -16,6 +16,12 @@ public interface GetExcelDateService {
 
     void exportTestExcel(HttpServletResponse response, JSONObject dto, List<Integer> selectMenu);
 
+    void testExcelWithAnnotation(HttpServletResponse response, JSONObject dto);
+
+    void exportTestExcelAndImplCellWriteHandler(HttpServletResponse response, JSONObject dto);
+
+    void exportExcelCustomHead(HttpServletResponse response, JSONObject dto);
+
     List<List<String>> fillHead(List<DownloadDateEnum> enumList);
 //    List<String> fillHead(List<DownloadDateEnum> enumList);
 

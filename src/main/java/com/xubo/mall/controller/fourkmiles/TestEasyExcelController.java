@@ -29,6 +29,14 @@ import java.util.List;
  *  easyexcel 参考 https://blog.csdn.net/qq_31964019/article/details/103730631
  *  加班 ： 10， 16 ， 17 ，18， 19,21,22,23，24
  *  Controller 里面只做数据校验，不写业务逻辑(校验可以通过一些注解来实现)
+ *  easyexcel  导出日期类型(不是格式化成日期类型)
+ *     参考 ： https://blog.csdn.net/u012723183/article/details/116186863
+ *
+ *  easyexcel 的坑
+ *      1、导出类的属性大写 就会导致 该字段导出的数据为空
+ *      2、日期、金额类 是将之格式化为数字类型的字符串(如果cell中不带金额符号、百分比符号，那么就可以格式化成数字) 使用@ContentStyle可以转换成数字类型
+ *      3、使用@ContentStyle(dateFormat) 这个注解的时候，如果单元格的width过小的话会出现#### 要解决这个问题就增加单元格的宽度
+ *
  */
 @RestController
 @RequestMapping("/test")
@@ -58,6 +66,33 @@ public class TestEasyExcelController {
     public void downloadAndSetStyle(@RequestBody JSONObject dto, HttpServletResponse response) {
 
         getExcelDateService.exportExcelAndFormatNumber(dto, response);
+
+    }
+
+    /**
+     *  重写了CellWriteHandler 接口，对样式进行了处理
+     * @param dto
+     * @param response
+     */
+    @PostMapping("/download/style")
+    public void downloadStyle(@RequestBody JSONObject dto, HttpServletResponse response) {
+        getExcelDateService.exportTestExcelAndImplCellWriteHandler(response, dto);
+    }
+
+    /**
+     * 注解的方式对样式进行处理(easyexcel 与 自定义注解)
+     * @param dto
+     * @param response
+     */
+    @PostMapping("/exportproperty")
+    public void testAnnotation( @RequestBody JSONObject dto, HttpServletResponse response) {
+        getExcelDateService.testExcelWithAnnotation(response,dto);
+
+    }
+
+    @PostMapping("/exportcustomhead")
+    public void exportcustomhead(@RequestBody JSONObject dto, HttpServletResponse response) {
+        getExcelDateService.exportExcelCustomHead(response,dto);
 
     }
 
