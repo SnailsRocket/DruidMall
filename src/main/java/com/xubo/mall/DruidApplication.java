@@ -17,6 +17,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * 57032
  * miui 历史版本下载 https://tieba.baidu.com/p/7229071169
  * am-asin表现 BigCatagory SmallCatagory 两张表 每次过滤通过Id去过滤，而且之前的 t_indicator_asin_category_info 也需要将大小类目的Id加上去
+ * https://www.zhihu.com/question/386655212/answer/2000784992 // leetcode
  *
  */
 //@SpringBootApplication(exclude = {ElasticsearchAutoConfiguration})
