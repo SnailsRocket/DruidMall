@@ -2,6 +2,7 @@ package com.xubo.Interview.sz.interview;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -139,6 +140,7 @@ public class AlgorithmTest {
     public void caculateNumber() {
         Integer result = caculateNumbers(5, 10);
         System.out.println(result);
+        System.out.println(BigDecimal.valueOf(0).setScale(2,BigDecimal.ROUND_HALF_UP));
     }
 
     public Integer caculateNumbers(int n, int m) {
