@@ -3,6 +3,7 @@ package com.xubo.Interview.sz.interview;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -97,6 +98,11 @@ public class AlgorithmTest {
         return true;
     }
 
+    @Test
+    public void doTest() {
+        System.out.println(3 % 4);
+    }
+
     /**
      * 1000个数范围是[0-999]，有两个相同的数，请设计算法找出来
      * 思路：这个用排序做特别快，不建议用for循环
@@ -131,7 +137,29 @@ public class AlgorithmTest {
      */
     @Test
     public void caculateNumber() {
+        Integer result = caculateNumbers(5, 10);
+        System.out.println(result);
+    }
 
+    public Integer caculateNumbers(int n, int m) {
+        List<Integer> numList = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            numList.add(i);
+        }
+        for (int i = 0; i < n; i++) {
+            if(numList.size() == 1) {
+                return numList.get(0);
+            } else if(numList.size() > m) {
+                numList.remove(m-1);
+            } else {
+                if(m % numList.size() == 0) {
+                    numList.remove(numList.size() - 1);
+                } else {
+                    numList.remove(m % numList.size()-1);
+                }
+            }
+        }
+        return -1;
     }
 
     /**
