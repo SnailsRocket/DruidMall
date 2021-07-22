@@ -2,9 +2,11 @@ package com.xubo.Interview.sz.fourkmiles;
 
 
 import com.xubo.mall.annotation.People;
+import com.xubo.mall.entity.DownloadData;
 import com.xubo.mall.entity.EDspAchievement;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -47,11 +49,31 @@ public class TestApplications {
 
     }
 
+    /**
+     * Integer 和 String 的 hash方法
+     */
+    @Test
+    public void testObject() {
+        Integer i1 = 10;
+        Integer i2 = 10;
+        System.out.println(i1==i2);
+        System.out.println(i1.hashCode() + "==" + i2.hashCode());
+        String str1 = "abc";
+        String str2 = "abc";
+        String str3 = new String("a");
+        String str4 = new String("a");
+        System.out.println(str3==str4);
+        System.out.println(str3.hashCode() + "==" + str4.hashCode());
+    }
+
     // 这两种方式没有从枚举中拿方便，效率也相对较低
     @Test
     public void addToList() {
         Integer[] arr = {1,2,3,4,5,6,7,8};
+        int[] arr1 = {1,2,3,4,5,6};
 
+        List<int[]> ints = Arrays.asList(arr1);
+        List<Integer> list = Arrays.asList(arr);
 
     }
 
